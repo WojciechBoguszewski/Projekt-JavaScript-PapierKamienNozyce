@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>Papier Kamień Nożyce</title>
+    <style>
+        body {
+            text-align: center;
+            zoom: 200%;
+            background-color: whitesmoke;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: darkslategray;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px #888;
+        }
+
+        button {
+            background-color: #fff;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button img {
+            height: 150px;
+            width: 150px;
+            border-radius: 10px;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #wynik {
+            font-size: 1.8em;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 1.2em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="wynik">
+        Wybierz swoją opcję
+    </h1>  
+
+    <div class="container">
+        <button onclick="gra('kamień')"><img src="photos/kamien.jpg" alt="Kamień"></button>
+        <button onclick="gra('papier')"><img src="photos/papier.jpg" alt="Papier"></button>
+        <button onclick="gra('nożyce')"><img src="photos/nozyce.png" alt="Nożyce"></button>
+    </div>
+
+    <footer>
+        Gra "Papier, Kamień, Nożyce"
+    </footer>
+
+    <script>
+        function gra(wyborGracza) {
+            let opcje = ['kamień', 'papier', 'nożyce'];
+            let wyborKomputera = opcje[Math.floor(Math.random() * 3)];
+
+            let wynikTekst = '';
+
+            if (wyborGracza === wyborKomputera) {
+                wynikTekst = `Komputer wybrał ${wyborKomputera}, Remis!`;
+            } else if (
+                (wyborGracza === 'kamień' && wyborKomputera === 'nożyce') ||
+                (wyborGracza === 'papier' && wyborKomputera === 'kamień') ||
+                (wyborGracza === 'nożyce' && wyborKomputera === 'papier')
+            ) {
+                wynikTekst = `Komputer wybrał ${wyborKomputera}, Wygrałeś!`;
+            } else {
+                wynikTekst = `Komputer wybrał ${wyborKomputera}, Przegrałeś!`;
+            }
+
+            document.getElementById("wynik").innerHTML = wynikTekst;
+        }
+    </script>
+</body>
+</html>
